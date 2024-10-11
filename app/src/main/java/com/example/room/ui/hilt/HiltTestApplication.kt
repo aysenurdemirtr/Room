@@ -1,10 +1,11 @@
-package com.example.room
+package com.example.room.ui.hilt
 
 import android.app.Application
+import com.example.room.AppDatabase
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class TestApplication : Application() {
+class HiltTestApplication : Application() {
 
     lateinit var appDatabase: AppDatabase
 

@@ -1,4 +1,4 @@
-package com.example.room.ui.main
+package com.example.room.ui.room
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -21,7 +21,7 @@ class PersonAdapter : RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.main_item, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.room_item, parent, false)
         return PersonViewHolder(itemView)
     }
 
