@@ -16,7 +16,7 @@ class HiltActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.hilt_activity)
 
-        hiltViewModel.executeTest()
+        hiltViewModel.startTest()
 
     }
 
