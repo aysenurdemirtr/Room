@@ -12,7 +12,6 @@ import androidx.room.Update
 //we are creating all necessary querys.
 @Dao
 interface PersonDao {
-
     //if there is another person same, we just ignore that.
     //
     @Insert(onConflict = OnConflictStrategy.IGNORE)

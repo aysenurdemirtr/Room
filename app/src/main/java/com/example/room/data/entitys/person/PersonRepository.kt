@@ -1,13 +1,14 @@
 package com.example.room.data.entitys.person
 
 import androidx.lifecycle.LiveData
+import javax.inject.Inject
 
 // a repository class abstracts access to multiple data sources.
 
 // db'deki değişiklikleri kolay bir şekilde ayarlayabilirim.
 // yönetimi kolaylaştırıyor. birden fazla tabloya erişmesini istediğimde bi satır kod ile değiştirebilirim.
 
-class PersonRepository(private val personDao : PersonDao) {
+class PersonRepository @Inject constructor(private val personDao : PersonDao) {
 
     val readAllData: LiveData<List<Person>> = personDao.readAllData()
 

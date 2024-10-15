@@ -3,27 +3,28 @@ package com.example.room.ui.room
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.room.R
 import com.example.room.data.entitys.person.Person
+import dagger.hilt.android.AndroidEntryPoint
 import kotlin.random.Random
 
+
+@AndroidEntryPoint
 class RoomActivity : AppCompatActivity() {
 
     // @Inject lateinit var testHelpers: TestHelpers
 
     private lateinit var personAdapter: PersonAdapter
-    private lateinit var personViewModel: RoomViewModel
+    private val personViewModel: RoomViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.room_activity)
-
-        // testHelpers.test()
 
         // RecyclerView setup
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
@@ -31,14 +32,14 @@ class RoomActivity : AppCompatActivity() {
         recyclerView.adapter = personAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // ViewModel setup
-        personViewModel = ViewModelProvider(this).get(RoomViewModel::class.java)
-
         // LiveData gözlemi
         personViewModel.readAllData.observe(this, Observer { personList ->
             personAdapter.setData(personList)
         })
 
+        buttonListener()
+    }
+    private fun buttonListener(){
         // CREATE butonuna tıklama olayını ayarla
         val createButton: Button = findViewById(R.id.create_btn)
         createButton.setOnClickListener {
@@ -73,7 +74,6 @@ class RoomActivity : AppCompatActivity() {
         personViewModel.addPerson(person)
         Log.d("MainActivity", "Person added: Name: $name, Age: $age, Sex: $sex")
     }
-
     private fun readPersons() {
         // LiveData gözlemi
         personViewModel.readAllData.observe(this, Observer { persons ->
@@ -82,8 +82,6 @@ class RoomActivity : AppCompatActivity() {
             Log.d("MainActivity", "People Listed") // Gözlemden gelen veriyi gösterir
         })
     }
-
-
     private fun deleteSingleCharacterIdPersons() {
         personViewModel.deleteLastNPersons(3)
     }
