@@ -24,4 +24,8 @@ class AlbumRepository @Inject constructor(
         }
     }
 
+    suspend fun deleteAllAlbum() {
+        albumDao.deleteAllAlbum()
+    }
+
 }

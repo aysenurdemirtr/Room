@@ -1,7 +1,5 @@
 package com.example.room.modules
 
-import com.example.room.data.models.album.AlbumService
-import com.example.room.data.models.people.PeopleService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

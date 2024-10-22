@@ -21,4 +21,10 @@ class AlbumViewModel @Inject constructor(
             albumRepository.fetchAndInsertAlbumFromApi()
         }
     }
+
+    fun deleteAllAlbum() {
+        viewModelScope.launch {
+            albumRepository.deleteAllAlbum()
+        }
+    }
 }

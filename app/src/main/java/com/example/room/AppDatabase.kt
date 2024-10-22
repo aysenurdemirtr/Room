@@ -31,10 +31,13 @@ abstract class PeopleDatabase : RoomDatabase() {
     abstract fun peopleDao(): PeopleDao
 }
 
-@Database(entities = [Album::class], version = 1, exportSchema = false)
+@Database(entities = [Album::class], version = 2, exportSchema = false)
 abstract class AlbumDatabase : RoomDatabase() {
     // Alt sınıflar bu ortak özellikleri miras alır ve
     // ihtiyaç duyduklarında özelleştirebilirler.
+    // versiyon değiştiği zaman burada açıklamam gerekiyor uygulamaya.
+    // ben telefondan uygulamayı silip tekrar yüklediğim için buna gerek kalmadı.
+    // migrate
     abstract fun albumDao(): AlbumDao
 }
 
