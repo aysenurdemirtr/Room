@@ -45,10 +45,10 @@ class RoomActivity : AppCompatActivity() {
         createButton.setOnClickListener {
             createRandomPerson()
         }
-        val readButton: Button = findViewById(R.id.read_btn)
-        readButton.setOnClickListener {
-            readPersons()
-        }
+//        val readButton: Button = findViewById(R.id.read_btn)
+//        readButton.setOnClickListener {
+//            readPersons()
+//        }
 
         val updateButton: Button = findViewById(R.id.update_btn)
         updateButton.setOnClickListener {

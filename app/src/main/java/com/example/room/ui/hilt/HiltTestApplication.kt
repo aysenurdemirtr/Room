@@ -1,8 +1,9 @@
 package com.example.room.ui.hilt
 
 import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
-//@HiltAndroidApp
+@HiltAndroidApp
 class HiltTestApplication : Application() {
 
     // burada benim database'i injectlememe grek kalmadı

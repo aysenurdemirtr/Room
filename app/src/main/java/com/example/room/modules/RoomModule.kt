@@ -1,7 +1,8 @@
-package com.example.room
+package com.example.room.modules
 
 import android.content.Context
 import androidx.room.Room
+import com.example.room.AppDatabase
 import com.example.room.data.entitys.person.PersonDao
 import dagger.Module
 import dagger.Provides
@@ -12,7 +13,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
+object RoomModule {
 
     @Provides
     @Singleton

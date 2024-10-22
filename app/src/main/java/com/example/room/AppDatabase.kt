@@ -2,6 +2,12 @@ package com.example.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.example.room.data.entitys.album.Album
+import com.example.room.data.entitys.album.AlbumDao
+import com.example.room.data.entitys.people.Converters
+import com.example.room.data.entitys.people.People
+import com.example.room.data.entitys.people.PeopleDao
 import com.example.room.data.entitys.person.Person
 import com.example.room.data.entitys.person.PersonDao
 
@@ -16,6 +22,22 @@ abstract class AppDatabase : RoomDatabase() {
     // ihtiyaç duyduklarında özelleştirebilirler.
     abstract fun personDao(): PersonDao
 }
+
+@Database(entities = [People::class], version = 1, exportSchema = false)
+@TypeConverters(Converters::class)
+abstract class PeopleDatabase : RoomDatabase() {
+    // Alt sınıflar bu ortak özellikleri miras alır ve
+    // ihtiyaç duyduklarında özelleştirebilirler.
+    abstract fun peopleDao(): PeopleDao
+}
+
+@Database(entities = [Album::class], version = 1, exportSchema = false)
+abstract class AlbumDatabase : RoomDatabase() {
+    // Alt sınıflar bu ortak özellikleri miras alır ve
+    // ihtiyaç duyduklarında özelleştirebilirler.
+    abstract fun albumDao(): AlbumDao
+}
+
 
 //    companion object {
 //        //ile işaretlenmiş bir değişken, bir iş parçacığı tarafından güncellendiğinde,

@@ -16,6 +16,9 @@ class RoomViewModel @Inject constructor(
     private val repository : PersonRepository
 ) : ViewModel(){
 
+//    @Inject
+//    private lateinit var repository : PersonRepository
+// yukarıda constructor yaptığımda aşağıya yazmamı istemez hilt.
     val readAllData : LiveData<List<Person>> = repository.readAllData
 
     // Verileri listelemek için gözlemci
