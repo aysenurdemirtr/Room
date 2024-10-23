@@ -55,6 +55,9 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    implementation ("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11")
+
+
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.5")
 
     implementation ("com.google.dagger:hilt-android:2.44")
