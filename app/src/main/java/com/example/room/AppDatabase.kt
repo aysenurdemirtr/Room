@@ -5,7 +5,6 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.room.data.entitys.album.Album
 import com.example.room.data.entitys.album.AlbumDao
-import com.example.room.data.entitys.people.Converters
 import com.example.room.data.entitys.people.People
 import com.example.room.data.entitys.people.PeopleDao
 import com.example.room.data.entitys.person.Person
@@ -16,29 +15,21 @@ import com.example.room.data.entitys.person.PersonDao
 // contains database folder and main access connections to our data.
 // exportSchema means :
 
-@Database(entities = [Person::class], version = 1, exportSchema = false)
+@Database(
+    entities = [
+        Person::class,
+        People::class,
+        Album::class
+
+    ], version = 1, exportSchema = false
+)
+@TypeConverters(People.Gender.Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     // Alt sınıflar bu ortak özellikleri miras alır ve
     // ihtiyaç duyduklarında özelleştirebilirler.
-    abstract fun personDao(): PersonDao
-}
-
-@Database(entities = [People::class], version = 1, exportSchema = false)
-@TypeConverters(Converters::class)
-abstract class PeopleDatabase : RoomDatabase() {
-    // Alt sınıflar bu ortak özellikleri miras alır ve
-    // ihtiyaç duyduklarında özelleştirebilirler.
-    abstract fun peopleDao(): PeopleDao
-}
-
-@Database(entities = [Album::class], version = 2, exportSchema = false)
-abstract class AlbumDatabase : RoomDatabase() {
-    // Alt sınıflar bu ortak özellikleri miras alır ve
-    // ihtiyaç duyduklarında özelleştirebilirler.
-    // versiyon değiştiği zaman burada açıklamam gerekiyor uygulamaya.
-    // ben telefondan uygulamayı silip tekrar yüklediğim için buna gerek kalmadı.
-    // migrate
-    abstract fun albumDao(): AlbumDao
+    abstract fun personDao() : PersonDao
+    abstract fun peopleDao() : PeopleDao
+    abstract fun albumDao() : AlbumDao
 }
 
 
@@ -52,11 +43,11 @@ abstract class AlbumDatabase : RoomDatabase() {
 //        @Volatile
 //        private var Instance: AppDatabase? = null
 
-        // Bu fonksiyon, PersonDatabase nesnesinin güvenli bir şekilde tekil (singleton) olarak yönetilmesini sağlar.
-        // Eğer veritabanı zaten oluşturulmuşsa, mevcut örneği döndürür; yoksa yeni bir örnek oluşturur.
-        // synchronized bloğu, bu işlemin çok iş parçacıklı ortamlarda güvenli olmasını sağlar, böylece
-        // aynı anda birden fazla iş parçacığı yeni bir örnek oluşturmaya çalışmaz.
-        // Bu yapı, veritabanı erişim performansını artırır ve uygulama içinde tutarlılığı sağlar.
+// Bu fonksiyon, PersonDatabase nesnesinin güvenli bir şekilde tekil (singleton) olarak yönetilmesini sağlar.
+// Eğer veritabanı zaten oluşturulmuşsa, mevcut örneği döndürür; yoksa yeni bir örnek oluşturur.
+// synchronized bloğu, bu işlemin çok iş parçacıklı ortamlarda güvenli olmasını sağlar, böylece
+// aynı anda birden fazla iş parçacığı yeni bir örnek oluşturmaya çalışmaz.
+// Bu yapı, veritabanı erişim performansını artırır ve uygulama içinde tutarlılığı sağlar.
 
 //        fun getDatabase(context: Context): AppDatabase {
 //            val tempInstance = Instance
